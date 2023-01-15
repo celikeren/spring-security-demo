@@ -13,8 +13,6 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
-import static dev.smithereens.security.config.MessageSourceConfig.messages;
-
 @Configuration
 @RequiredArgsConstructor
 public class AuthConfig {
@@ -25,7 +23,7 @@ public class AuthConfig {
     public UserDetailsService userDetailsService() {
         return username -> userService
                 .getByUsername(username)
-                .orElseThrow(() -> new UsernameNotFoundException(messages.get("ex.user.not.found")));
+                .orElseThrow(() -> new UsernameNotFoundException("User not found"));
     }
 
     @Bean
